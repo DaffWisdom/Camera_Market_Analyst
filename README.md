@@ -1,29 +1,32 @@
-# Canon R50 Used Market Analysis 📸
+# Used Camera Market Analysis (Canon R50)
+## Project Overview
+This is an end-to-end data analysis project focused on the resale market of the **Canon R50** camera. The project covers the entire data pipeline: from automated web scraping and data cleaning to feature engineering and exploratory data analysis (EDA).
 
-This project is an end-to-end data pipeline designed to scrape, clean, and analyze the used market prices of the **Canon R50** camera on a Vietnamese e-commerce platform.
+## 🚀 Key Features
+- **Automated Ingestion**: Scraped 100+ listings from a major e-commerce platform using Python (BeautifulSoup/Requests) with pagination and anti-bot mechanisms.
+- **Data Wrangling**: Cleaned messy currency strings and transformed raw text into structured numerical data using Pandas.
+- **Feature Engineering**: Used Regular Expressions (Regex) to extract hidden attributes like "Includes Kit Lens" and "Fullbox Status" from product titles.
+- **Insightful EDA**: Visualized price distributions and market segments using Seaborn and Matplotlib.
 
-## 🚀 Project Overview
-- **Data Ingestion**: Scrapes listings from Chotot using `requests` and `BeautifulSoup`, featuring robust session management and anti-bot measures.
-- **Data Cleaning**: Leverages `Pandas` and advanced `Regex` to extract camera conditions and lens configurations from Vietnamese listing titles.
-- **EDA & Visualization**: Analyzes price distributions and configuration impacts using `Seaborn` and `Matplotlib`.
-
-## 🔍 Key Data Insight: Behavioral Data Bias
-Analysis of the Canon R50 used market reveals a significant **Behavioral Data Bias** in seller listing habits. Despite expected price variance between "Body Only" and "Kit" configurations, the median prices across these categories remained nearly identical. 
-
-This phenomenon suggests that sellers of entry-level gear—who are often hobbyists rather than professional resellers—frequently include the standard kit lens (18-45mm) by default but omit explicit keywords like "Kit" or "Lens" from their titles, assuming it is the "standard" offering. Consequently, classification models based solely on title keywords likely suffer from high false-negative rates for kit inclusions.
+## 🧠 The "Behavioral Data Bias" Discovery
+A core finding of this project was the overlap in median prices between "Body Only" and "Fullbox" listings. 
+- **The Observation**: Initial analysis showed that "Body Only" cameras were priced similarly to "Fullbox" kits.
+- **The Insight**: Through domain knowledge, I deduced that sellers of entry-level cameras like the Canon R50 often sell the full kit but fail to explicitly state "Kit" or "Lens" in the short title.
+- **The Solution**: I implemented a more robust Regex filter and acknowledged the limitation of title-only extraction, suggesting that future iterations should mine the product description field for higher accuracy.
 
 ## 🛠️ Tech Stack
-- **Python 3.12**
-- **Pandas** (Data Manipulation)
-- **BeautifulSoup4** (Web Scraping)
-- **Seaborn/Matplotlib** (Visualization)
-- **Regex** (Feature Engineering)
+- **Languages**: Python
+- **Libraries**: BeautifulSoup4, Requests, Pandas, Matplotlib, Seaborn, Regex
+- **Tools**: VS Code, Git
 
-## 📂 File Structure
-- `test_scraper.py`: Scraper script with session persistence.
-- `data_cleaning.py`: Cleans raw data and extracts features.
-- `eda_visualization.py`: Generates price distribution plots.
-- `used_camera_canon_r50_cleaned.csv`: The processed dataset.
+## 📈 Visualizations
+(Plots are saved in the `outputs/` folder)
+- **Histogram**: Shows a concentration of prices around 16.5M VND.
+- **Boxplots**: Highlight market consistency and outliers in the Fullbox segment.
 
----
-*Developed as part of a Data Science Portfolio.*
+## How to Run
+1. Clone the repository.
+2. Run `pip install -r requirements.txt`.
+3. Execute `python test_scraper.py` to get raw data.
+4. Execute `python data_cleaning.py` to process features.
+5. Execute `python eda_visualization.py` for insights.
